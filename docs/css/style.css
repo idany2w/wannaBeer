@@ -411,6 +411,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   overflow-x: hidden;
   margin: 0;
   background-color: #000;
@@ -503,7 +504,8 @@ b, strong {
   position: relative;
 }
 .wannaBeer__layout {
-  height: 100vh;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
