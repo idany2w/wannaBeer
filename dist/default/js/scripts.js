@@ -7,14 +7,12 @@ document.addEventListener('click', async e => {
 	btn.style.pointerEvents = 'none';
 
 	let response = await fetch('https://random-data-api.com/api/beer/random_beer');
+	const beer = document.querySelector('.wannaBeer__beer');
+	let html = '';
 
 	if (response.ok) {
 		let beerItem = await response.json();
-		const beer = document.querySelector('.wannaBeer__beer');
 
-		console.log(beerItem)
-
-		let html = '';
 		let beerItemHTML = `
 			<div class="beerCard">
 				<p class="beerCard__title">Пиво "${beerItem.name}"</p>
@@ -39,8 +37,17 @@ document.addEventListener('click', async e => {
 		btn.textContent = 'Хочу другое!';
 		btn.style.pointerEvents = 'auto';
 
-	} else {
-		alert("Ошибка HTTP: " + response.status);
+	} else {const beer = document.querySelector('.wannaBeer__beer');
+		let beerItemHTML = `
+			<div class="beerCard">
+				<p class="beerCard__title">Не удалось получить информацию. Попробуйте позднее</p>
+			</div>
+		`;
+
+		html += beerItemHTML;
+		beer.innerHTML = html;
+		btn.textContent = 'Хочу Пиво!';
+		btn.style.pointerEvents = 'auto';
 	}
 		
 })
