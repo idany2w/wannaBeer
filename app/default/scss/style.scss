@@ -1,0 +1,220 @@
+@import 'includes/reset.scss';
+
+// variables
+    $font1: 'Montserrat', sans-serif;
+    $color1: #fff;
+    $color2: #000;
+
+    // breakpoints
+
+    $ipad: 768px;
+    $desktop: 1200px;
+// variables end
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    background-color: $color2;
+}
+.overflow {overflow:hidden}
+.static{position: static;}
+
+.w100 {width:100%}
+.h100 {height:100%}
+figure {margin: 0;}
+img {max-width: 100%;height: auto;border: 0;vertical-align: middle;}
+input, textarea, select {-webkit-appearance: none;}
+button, input, select, textarea{
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+}
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+// typografy
+    body{
+        font-family: $font1;
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: normal;
+        font-style: normal;
+        color: $color1;
+    }
+
+    b,strong{
+        font-weight: 800;
+    }
+// typografy end
+
+// wannaBeer
+    @keyframes textSlideUp {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    }
+    .wannaBeer{
+        position: relative;
+
+        &__layout{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+            @media screen and (min-width: #{$ipad}) {
+                flex-direction: row;
+            }
+
+            &_left{
+                padding: 20px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            &_right{
+                @media screen and (min-width: #{$ipad}) {
+                    order: 1;
+                    flex-shrink: 0;
+                    @media (orientation: portrait){flex-basis: 40%;}
+                    @media (orientation: landscape){flex-basis: 60%;}
+                }
+            }
+        }
+
+        &__img{
+            @media screen and (min-width: #{$ipad}){
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__logo{
+            margin-bottom: auto;
+            font-weight: 800;
+            animation: textSlideUp .33s ease-in-out;
+
+            @media screen and (max-width: #{$ipad - .5}) {
+                position: fixed;
+                left: 15px;
+                top: 10px;
+                z-index: 2;
+                color: $color2;
+            }
+        }
+
+        &__title{
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 20px;
+            animation: textSlideUp .66s ease-in-out;
+
+            @media screen and (min-width: #{$ipad}){
+                @media (orientation: portrait){font-size: 22px;}
+                @media (orientation: landscape){font-size: 28px;}
+            }
+
+            @media screen and (min-width: #{$desktop}) {
+                font-size: 36px;
+                margin: auto 0 20px;
+            }
+        }
+
+        &__beer{
+            margin-bottom: 20px;
+
+            @media screen and (min-width: #{$ipad}) {
+                order: 1;
+                margin-bottom: auto;
+            }
+        }
+
+        &__btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: $color1 3px solid;
+            min-height: 50px;
+            width: 100%;
+            font-size: 14px;
+            color: $color1;
+            font-weight: 800;
+            margin-top: auto;
+            position: relative;
+            transition: color .33s;
+            animation: textSlideUp 1s ease-in-out;
+
+            &::before{
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 0%;
+                width: 100%;
+                display: block;
+                transition: height .33s;
+                transition-timing-function: ease-in-out;
+                background-color: $color1;
+                z-index: -1;
+            }
+
+            &:hover, &:focus{
+                color: $color2;
+                &::before{
+                    height: 100%;
+                }
+            }
+
+            @media screen and (min-width: #{$ipad}) {
+                margin-top: 0;
+                width: 320px;
+                margin-bottom: auto;
+            }
+        }
+    }
+// wannaBeer end
+
+// beerCard
+    .beerCard{
+        padding: 20px;
+        border: $color1 3px solid;
+        overflow: hidden;
+        color: $color1;
+        animation: textSlideUp 1s ease-in-out;
+
+        &__title{
+            font-weight: 800;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        &__info{
+            font-size: 14px;
+        }
+        &__info_list{
+            & > * + *{margin-top: 8px;}
+
+            @media screen and (min-width: #{$ipad}) {
+                columns: 2;
+                column-gap: 10px;
+    
+                & > *{
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+        }
+    }
+// beerCard end
