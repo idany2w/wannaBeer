@@ -89,16 +89,24 @@ button, input, select, textarea{
                 @media screen and (min-width: #{$ipad}) {
                     order: 1;
                     flex-shrink: 0;
+                    position: relative;
                     @media (orientation: portrait){flex-basis: 40%;}
                     @media (orientation: landscape){flex-basis: 60%;}
+                }
+                @media screen and (min-width: #{$desktop}) {
+                    flex-basis: 50%;
                 }
             }
         }
 
         &__img{
             @media screen and (min-width: #{$ipad}){
+                width: 100%;
                 height: 100%;
                 object-fit: cover;
+                position: absolute;
+                left: 0;
+                top: 0;
             }
         }
 
@@ -139,6 +147,7 @@ button, input, select, textarea{
             @media screen and (min-width: #{$ipad}) {
                 order: 1;
                 margin-bottom: auto;
+                margin-top: 20px;
             }
         }
 
